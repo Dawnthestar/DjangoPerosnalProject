@@ -1,0 +1,31 @@
+{% load static %}
+<html>
+    <head>
+        <title>Django Wiki</title>
+        <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+    </Head>
+    <body>
+        <header>
+            <div class="nav-left">
+            <h1> <a href= "{%url 'home'%}" >Django Blog </a> </h1>
+            </div>
+            <div class="nav-right">
+                <a href="{%url 'wiki_new'%}">+ New Blog Post</a>
+                <p></p>
+                <a href= 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'>Music</a>
+            </div>
+        </header>
+        {% if user.is_authenticated %}
+        <p> Hi {{user.username}}</p>
+        <form action="{% url "logout" %}" method="post">{% csrf_token %}
+            <button type="submit">Log Out</button>
+        {% else %}
+        <p>You are not loged in.</p>
+        <a href="{% url 'login' %}">Log In</a>
+        <a href= "{% url "signup" %}">Sign Up</a>
+        {% endif %}
+
+        {% block content %}
+        {% endblock  %}
+    </body>
+</html>

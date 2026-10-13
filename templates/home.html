@@ -1,0 +1,10 @@
+{% extends "base.html"%}
+{% block content %}
+
+    {%for article in article_list %}
+    <!-- div == container, postentry = container name-->
+<div class="post-entry">
+    <h2><a href= " {{article.get_absolute_url}}"> {{article.title}}</a></h2>
+</div>
+{% endfor %}
+{% endblock content %}
