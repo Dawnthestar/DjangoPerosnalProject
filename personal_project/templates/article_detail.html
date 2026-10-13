@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="post-entry">
+    <h2>{{article.title}}</h2>
+    <h4> By {{ article.author}}</h4>
+    <p>{{article.body}}</p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <h4>comments</h4>
+
+   {% for comment in article.comments.all %}
+   <p>{{comment.author.username}}: {{comment.body}}</p>
+   
+   
+   {% endfor %}
+</div>
+
+{% if user.username == article.author.username %}
+<a href="{% url 'wiki_delete' article.pk %}">+ Delete Wiki Post</a>
+<p></p>
+<a href="{% url 'wiki_edit' article.pk %}">+ Edit Wiki Post</a>
+<p></p>
+{% endif %}
+
+
+<a href="{% url 'comment_new' article.pk %}">+New Comment</a>
+
+
+{% endblock content %}
